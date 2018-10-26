@@ -1,0 +1,7 @@
+用户表      user
+电影表      movie
+影院表      cinema
+影厅表      movie_hall
+场次表      play
+影票表      movie_ticket
+评论表      comment
