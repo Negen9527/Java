@@ -65,5 +65,29 @@ public class PlayDao {
 		return plays;	
 	}
 	
+	//所有场次
+	public ResultSet selectAllPlay() {
+		String sql = "SELECT movie.name,cinema.name,movie_hall.name,play.play_time\r\n" + 
+				"FROM\r\n" + 
+				"    play\r\n" + 
+				"    INNER JOIN movie \r\n" + 
+				"        ON (play.movie_id = movie.id)\r\n" + 
+				"    INNER JOIN `db_movie`.`movie_hall` \r\n" + 
+				"        ON (play.hall_id = movie_hall.id)\r\n" + 
+				"    INNER JOIN db_movie.cinema \r\n" + 
+				"        ON (movie_hall.cinema_id = cinema.id)";
+		Connection conn = DbUtils.getConn();
+		Statement stm = null;
+		ResultSet rs = null;
+			try {
+				stm = conn.createStatement();
+				 rs = stm.executeQuery(sql);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return rs;
+	}
+	
 	
 }

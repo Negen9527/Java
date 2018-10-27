@@ -26,9 +26,11 @@ public class MainApp {
 		switch (choice) {
 		case 1:
 			//µÇÂ½
+			UserModule.userLogin();
 			break;
 		case 2:
 			//×¢²á
+			UserModule.userRegister();
 			break;
 		case 3:
 			//ºóÌ¨
