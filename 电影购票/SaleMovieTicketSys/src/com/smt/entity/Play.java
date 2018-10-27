@@ -1,13 +1,13 @@
 package com.smt.entity;
 
-import java.sql.Time;
 
 public class Play {
 	private Integer id;
 	private Integer movieId;
-	private Time playTime;
+	private String playTime;
 	private Integer price;
 	private Integer hallId;
+	private Integer cinemaId;
 	public Integer getId() {
 		return id;
 	}
@@ -20,10 +20,10 @@ public class Play {
 	public void setMovieId(Integer movieId) {
 		this.movieId = movieId;
 	}
-	public Time getPlayTime() {
+	public String getPlayTime() {
 		return playTime;
 	}
-	public void setPlayTime(Time playTime) {
+	public void setPlayTime(String playTime) {
 		this.playTime = playTime;
 	}
 	public Integer getPrice() {
@@ -38,21 +38,30 @@ public class Play {
 	public void setHallId(Integer hallId) {
 		this.hallId = hallId;
 	}
-	public Play(Integer movieId, Time playTime, Integer price, Integer hallId) {
+	public Integer getCinemaId() {
+		return cinemaId;
+	}
+	public void setCinemaId(Integer cinemaId) {
+		this.cinemaId = cinemaId;
+	}
+	public Play() {
+		super();
+	}
+	public Play(Integer movieId, String playTime, Integer price, Integer hallId, Integer cinemaId) {
 		super();
 		this.movieId = movieId;
 		this.playTime = playTime;
 		this.price = price;
 		this.hallId = hallId;
-	}
-	public Play() {
-		super();
+		this.cinemaId = cinemaId;
 	}
 	@Override
 	public String toString() {
 		return "Play [id=" + id + ", movieId=" + movieId + ", playTime=" + playTime + ", price=" + price + ", hallId="
-				+ hallId + "]";
+				+ hallId + ", cinemaId=" + cinemaId + "]";
 	}
+
+	
 	
 	
 	

@@ -64,14 +64,15 @@ public class MainApp {
 			break;
 		case 2:
 			//影院管理
+			CinemaModule.showCinemaMenu();
 			break;
 		case 3:
 			//影厅管理
-			adminMenu();
+			MovieHallModule.showMovieHallMenu();
 			break;
 		case 4:
 			//场次管理
-			System.exit(0);
+			PlaysModule.showPlayMenu();
 			break;
 		case 5:
 			//订单管理【影票】

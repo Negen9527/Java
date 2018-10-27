@@ -55,7 +55,6 @@ public class MovieDao {
 			ResultSet rs = stm.executeQuery(sql);
 			movies = new ArrayList<Movie>();
 			while (rs.next()) {
-				
 				Movie temp = new Movie();
 				temp.setId(rs.getInt("id"));
 				temp.setName(rs.getString("name"));
@@ -65,7 +64,6 @@ public class MovieDao {
 				temp.setReleaseTime(rs.getDate("release_time"));
 				temp.setScore(rs.getInt("score"));
 				temp.setSummary(rs.getString("summary"));
-				
 				movies.add(temp);
 			}
 			
