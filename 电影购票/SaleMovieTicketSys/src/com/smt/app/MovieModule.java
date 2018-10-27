@@ -17,6 +17,7 @@ public class MovieModule {
 	private static MovieDao movieDao = new MovieDao();
 	private static Scanner scanner = new Scanner(System.in);
 	private static Integer currentPage = 1;
+	private static Map<Integer, List<Movie>> pageTeam;
 	/**
 	 * 1.电影管理选项菜单
 	 */
@@ -104,7 +105,8 @@ public class MovieModule {
 	//查看电影
 	public static void listMovie() {
 		List<Movie> movies = movieDao.selectAllMovie();
-		Map<Integer, List<Movie>> pageTeam = new HashMap<>();     //分页
+//		Map<Integer, List<Movie>> pageTeam = new HashMap<>();     //分页
+		pageTeam = new HashMap<>();
 		int page = 1;
 		List<Movie> tempList = new ArrayList<Movie>();
 		for(int i=0;i<movies.size();i++) {
@@ -117,11 +119,7 @@ public class MovieModule {
 		}
 		pageTeam.put(page, tempList);	
 		
-		showMovieList(pageTeam);
-		
-		
-		
-		
+		showMovieList(pageTeam);	
 		
 	}
 	
@@ -142,6 +140,10 @@ public class MovieModule {
 		System.out.println(adminMenuStr);
 		System.out.print("请选择:");
 		int choice = scanner.nextInt();
+		if(choice > 0 && choice < 6) {
+			showMovieInfo(pageTeam.get(currentPage), choice);
+		}
+		
 		switch (choice) {
 		case 7:
 			//上一页
@@ -175,12 +177,30 @@ public class MovieModule {
 	}
 	
 	
-	
-	//测试
-	public static void main(String[] args) {
-		MovieModule.listMovie();
+	//显示电影详细信息
+	private static void showMovieInfo(List<Movie> movieList,Integer index) {
+		System.out.println("----------------------电影详情----------------------");
+		Movie movie = movieList.get(index-1); 
+		System.out.println(movie.getName());
+		System.out.println("演员:" + movie.getActors());
+		System.out.println("时长:" + movie.getDuration() + "分钟");
+		System.out.println("类型:" + movie.getType());
+		System.out.println("上映时间:" + movie.getReleaseTime());
+		System.out.println("评分:" + ((movie.getScore()==0)?"暂无评分":movie.getScore()));
+		System.out.println("\n1.返回");
+		Integer intChoice = scanner.nextInt();
+		if(1==intChoice) {
+			showMovieList(pageTeam);
+		}
 	}
 	
+	
+	
+	//测试
+//	public static void main(String[] args) {
+//		MovieModule.listMovie();
+//	}
+//	
 	
 	
 }
