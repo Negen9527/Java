@@ -245,7 +245,6 @@ public class MovieTicketModule {
 				if(selectedSeats.contains(i*10 + j)) {
 					System.out.print("[xx] ");
 				}else {
-					
 					System.out.print("[" + i + j + "] ");
 				}
 			}
@@ -262,6 +261,16 @@ public class MovieTicketModule {
 		}else {
 			//生成电影票
 			seat = intChoice;
+			while (true) {
+				if(selectedSeats.contains(seat)) {
+					System.out.println("该座位已售出");
+					System.out.println("\n直接输入座位号选择或\n0.返回");
+					System.out.println("\n请选择:");
+					seat = scanner.nextInt();
+				}else {
+					break;
+				}
+			}
 			genMovieTicket();
 		}
 		
