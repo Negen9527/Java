@@ -1,4 +1,4 @@
-package com.smt.dao;
+package com.smt.entity;
 
 public class PlayAndHall {
 	private Integer id;

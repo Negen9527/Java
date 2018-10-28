@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.smt.entity.MovieTicket;
+import com.smt.entity.UserTicket;
 import com.smt.utils.DbUtils;
 
 //购买电影票
@@ -60,7 +61,50 @@ public class MovieTicketDao {
 	}
 	
 	
-	
+	//用户的电影票
+	public List<UserTicket> selectTicketByUserId(Integer userId){
+		List<UserTicket> userTickets = new ArrayList<UserTicket>();
+		String sql = "SELECT\r\n" + 
+				"movie.id AS movieId,movie.name AS movieName,cinema.name AS cinemaName,movie_hall.name AS hallName,movie_ticket.seat_id AS seat,play.price AS price,play.play_time AS playTime\r\n" + 
+				"FROM\r\n" + 
+				"    USER\r\n" + 
+				"    INNER JOIN movie_ticket \r\n" + 
+				"        ON (user.id = movie_ticket.user_id)\r\n" + 
+				"    INNER JOIN play \r\n" + 
+				"        ON (movie_ticket.play_id = play.id)\r\n" + 
+				"    INNER JOIN movie_hall \r\n" + 
+				"        ON (play.hall_id = movie_hall.id)\r\n" + 
+				"    INNER JOIN `movie` \r\n" + 
+				"        ON (play.movie_id = movie.id)\r\n" + 
+				"    INNER JOIN cinema \r\n" + 
+				"        ON (movie_hall.cinema_id = cinema.id)\r\n" + 
+				"    WHERE user.id =" + userId;
+		
+		Connection conn = DbUtils.getConn();
+		Statement stm = null;
+		ResultSet rs = null;
+			try {
+				stm = conn.createStatement();
+				 rs = stm.executeQuery(sql);
+				 while (rs.next()) {
+					 UserTicket ticket = new UserTicket();
+					 ticket.setMovieId(rs.getInt("movieId"));
+					 ticket.setMovieName(rs.getString("movieName"));
+					 ticket.setCinemaName(rs.getString("cinemaName"));
+					 ticket.setHallName("hallName");
+					 ticket.setSeat(rs.getInt("seat"));
+					 ticket.setPlayTime(rs.getString("playTime"));
+					 ticket.setPrice(rs.getDouble("price"));
+					 userTickets.add(ticket);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return userTickets;
+		
+		
+	}
 	
 	
 	

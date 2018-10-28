@@ -76,33 +76,32 @@ public class MovieDao {
 	
 	
 	//≤È—ØµÁ”∞
-	public List<Movie> searchMovieByName(String movieName){
-		String sql = "select * from movie where name like %" + movieName + "%";
+	public Movie searchMovieByName(String movieName){
+		String sql = "select * from movie where name='" + movieName + "'";
 		Connection conn = DbUtils.getConn();
 		Statement stm = null;
-		List<Movie> movies = null;
+		Movie movie = null;
 		try {
 			stm = conn.createStatement();
 			ResultSet rs = stm.executeQuery(sql);
-			movies = new ArrayList<Movie>();
+			movie = new Movie();
 			while (rs.next()) {
-				Movie temp = new Movie();
-				temp.setId(rs.getInt("id"));
-				temp.setName(rs.getString("name"));
-				temp.setActors(rs.getString("actors"));
-				temp.setDuration(rs.getDouble("duration"));
-				temp.setType(rs.getString("type"));
-				temp.setReleaseTime(rs.getDate("release_time"));
-				temp.setScore(rs.getInt("score"));
-				temp.setSummary(rs.getString("summary"));
-				movies.add(temp);
+				movie.setId(rs.getInt("id"));
+				movie.setName(rs.getString("name"));
+				movie.setActors(rs.getString("actors"));
+				movie.setDuration(rs.getDouble("duration"));
+				movie.setType(rs.getString("type"));
+				movie.setReleaseTime(rs.getDate("release_time"));
+				movie.setScore(rs.getInt("score"));
+				movie.setSummary(rs.getString("summary"));
+				break;
 			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return movies;
+		return movie;
 	}
 	
 	

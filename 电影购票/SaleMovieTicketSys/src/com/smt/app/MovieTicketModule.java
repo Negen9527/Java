@@ -10,13 +10,14 @@ import com.smt.dao.CinemaDao;
 import com.smt.dao.MovieDao;
 import com.smt.dao.MovieHallDao;
 import com.smt.dao.MovieTicketDao;
-import com.smt.dao.PlayAndHall;
 import com.smt.dao.PlayDao;
 import com.smt.dao.UserDao;
 import com.smt.entity.Cinema;
 import com.smt.entity.Movie;
 import com.smt.entity.MovieTicket;
+import com.smt.entity.PlayAndHall;
 import com.smt.entity.User;
+import com.smt.entity.UserTicket;
 
 //电影票模块 
 public class MovieTicketModule {
@@ -367,6 +368,35 @@ public class MovieTicketModule {
 		}
 		
 	}
+	
+	
+	//我的电影票
+	public static void userMovieTickets() {
+		System.out.println("-------------------我的电影票-----------------------");
+		List<UserTicket> userTickets = movieTicketDao.selectTicketByUserId(UserModule.userId);
+		Integer i = 1;
+		for (UserTicket userTicket : userTickets) {
+			System.out.println(i + "电影：" + userTicket.getMovieName());
+			System.out.println("影院：" + userTicket.getCinemaName());
+			System.out.println("影厅：" + userTicket.getHallName());
+			System.out.println("座位：" + userTicket.getSeat());
+			System.out.println("价格："+ userTicket.getPrice());
+			i++;
+		}
+		System.out.println("请选择电影票添加评论：");
+		System.out.println("0.返回");
+		Integer intChoice = scanner.nextInt();
+		if(0 != intChoice) {
+			//添加评论
+			System.out.println("请输入评论：");
+			
+		}else {
+			UserModule.showOnlineMainMenu();
+		}
+		
+		
+	}
+	
 	
 	
 	public static void main(String[] args) {

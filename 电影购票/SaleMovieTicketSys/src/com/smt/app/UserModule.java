@@ -2,12 +2,15 @@ package com.smt.app;
 
 import java.util.Scanner;
 
+import com.smt.dao.MovieDao;
 import com.smt.dao.UserDao;
+import com.smt.entity.Movie;
 import com.smt.entity.MovieTicket;
 import com.smt.entity.User;
 
 public class UserModule {
 	private static UserDao userDao = new UserDao();
+	private static MovieDao movieDao = new MovieDao();
 	private static Scanner scanner = new Scanner(System.in);
 	public static Integer userId;
 	public static User currentUser = new User();
@@ -107,7 +110,7 @@ public class UserModule {
 			break;
 		case 2:
 			//电影查询
-			
+			searchMovie();
 			break;
 		case 3:
 			//充值
@@ -115,7 +118,7 @@ public class UserModule {
 			break;
 		case 4:
 			//我的电影票【评论】
-			
+			MovieTicketModule.userMovieTickets();
 			break;
 		case 5:
 			//个人信息
@@ -129,6 +132,40 @@ public class UserModule {
 			break;
 		}
 		
+		
+	}
+	
+	
+	
+	
+	
+	//查询电影
+	public static void searchMovie() {
+		System.out.println("-------------------电影查询-----------------------");
+		System.out.print("输入电影名称");
+		System.out.println("\n\n0.返回");
+		String movieName = scanner.next();
+		if("0" != movieName) {
+			Movie movie = movieDao.searchMovieByName(movieName);
+//			System.out.println(movie);
+			if(null == movie.getId()) {
+				System.out.println("没有找到此电影。\r\n" + 
+						"查询失败，重新进行操作：");
+				searchMovie();
+			}else {
+				System.out.println("----------------------电影详情----------------------");
+				System.out.println(movie.getName());
+				System.out.println("演员:" + movie.getActors());
+				System.out.println("时长:" + movie.getDuration() + "分钟");
+				System.out.println("类型:" + movie.getType());
+				System.out.println("上映时间:" + movie.getReleaseTime());
+				System.out.println("评分:" + ((movie.getScore()==0)?"暂无评分":movie.getScore()));
+				System.out.println("\n1.返回");
+				searchMovie();
+			}
+		}else {
+			showOnlineMainMenu();
+		}
 		
 	}
 	

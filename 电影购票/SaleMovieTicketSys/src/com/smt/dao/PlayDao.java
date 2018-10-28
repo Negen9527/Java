@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.smt.entity.MovieHall;
 import com.smt.entity.Play;
+import com.smt.entity.PlayAndHall;
 import com.smt.utils.DbUtils;
 
 public class PlayDao {
