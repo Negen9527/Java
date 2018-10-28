@@ -53,6 +53,7 @@ public class UserDao {
 				user.setPassword(rs.getString("password"));
 				user.setSex(rs.getInt("sex"));
 				user.setTel(rs.getString("tel"));
+				user.setBalance(rs.getDouble("balance"));
 				break;
 			}
 		} catch (SQLException e) {
@@ -61,6 +62,27 @@ public class UserDao {
 		}
 		return user;	
 	}
+	
+	
+	//≥‰÷µ
+	public Boolean updateBalance(Double balance,Integer userId) {
+		String sql = "update user set balance=? where id=?";
+		Connection conn = DbUtils.getConn();
+		PreparedStatement pstm;
+		Boolean blnResult = false;
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setDouble(1, balance);
+			pstm.setInt(2, userId);
+			Integer intResult = pstm.executeUpdate();
+			if(1 == intResult)
+				blnResult = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return blnResult; 
+	}
+	
 	
 	
 }

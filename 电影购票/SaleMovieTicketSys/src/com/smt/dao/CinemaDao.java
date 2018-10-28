@@ -63,4 +63,42 @@ public class CinemaDao {
 	
 	
 	
+	//通过电影id列出影院
+	public List<Cinema> selectCinemaByMovieId(Integer movieId){
+		List<Cinema> cinemas = new ArrayList<Cinema>();
+		String sql = "SELECT\r\n" + 
+				"cinema.name,cinema.id,cinema.addr,cinema.city\r\n" + 
+				"FROM\r\n" + 
+				"    play\r\n" + 
+				"    INNER JOIN movie\r\n" + 
+				"        ON (play.movie_id = movie.id)\r\n" + 
+				"    INNER JOIN cinema\r\n" + 
+				"        ON (play.cinema_id = cinema.id) \r\n" + 
+				"    INNER JOIN movie_hall\r\n" + 
+				"	ON (cinema.id = movie_hall.cinema_id)\r\n" + 
+				"    WHERE movie.id=" + movieId;
+		
+		Connection conn = DbUtils.getConn();
+		Statement stm = null;
+		ResultSet rs = null;
+			try {
+				stm = conn.createStatement();
+				 rs = stm.executeQuery(sql);
+				 while (rs.next()) {
+					Cinema cinema = new Cinema();
+					cinema.setId(rs.getInt("id"));
+					cinema.setName(rs.getString("name"));
+					cinema.setAddr(rs.getString("addr"));
+					cinema.setCity(rs.getString("city"));
+					cinemas.add(cinema);
+				}
+				 
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return cinemas;
+		
+	}
+	
 }

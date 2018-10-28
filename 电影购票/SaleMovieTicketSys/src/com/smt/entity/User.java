@@ -6,6 +6,15 @@ public class User {
 	private String password;
 	private Integer sex;
 	private String tel;
+	private Double  balance;
+	
+	
+	public Double getBalance() {
+		return balance;
+	}
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
 	public Integer getId() {
 		return id;
 	}

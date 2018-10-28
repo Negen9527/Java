@@ -75,6 +75,36 @@ public class MovieDao {
 	}
 	
 	
+	//≤È—ØµÁ”∞
+	public List<Movie> searchMovieByName(String movieName){
+		String sql = "select * from movie where name like %" + movieName + "%";
+		Connection conn = DbUtils.getConn();
+		Statement stm = null;
+		List<Movie> movies = null;
+		try {
+			stm = conn.createStatement();
+			ResultSet rs = stm.executeQuery(sql);
+			movies = new ArrayList<Movie>();
+			while (rs.next()) {
+				Movie temp = new Movie();
+				temp.setId(rs.getInt("id"));
+				temp.setName(rs.getString("name"));
+				temp.setActors(rs.getString("actors"));
+				temp.setDuration(rs.getDouble("duration"));
+				temp.setType(rs.getString("type"));
+				temp.setReleaseTime(rs.getDate("release_time"));
+				temp.setScore(rs.getInt("score"));
+				temp.setSummary(rs.getString("summary"));
+				movies.add(temp);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return movies;
+	}
+	
 	
 	
 //	public static void main(String[] args) {

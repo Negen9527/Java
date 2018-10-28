@@ -90,4 +90,41 @@ public class PlayDao {
 	}
 	
 	
+	
+	//查询场次 通过movieid cinemaid
+	public List<PlayAndHall> selectPlayAndHallNameByMovieIdAndCinemaId(Integer movieId,Integer cinemaId){
+		List<PlayAndHall> playAndHalls = new ArrayList<PlayAndHall>();
+		String sql = "SELECT\r\n" + 
+				"play.id,movie_hall.name,play.play_time,play.price\r\n" + 
+				"FROM\r\n" + 
+				"    play\r\n" + 
+				"    INNER JOIN movie\r\n" + 
+				"        ON (play.movie_id = movie.id)\r\n" + 
+				"    INNER JOIN cinema\r\n" + 
+				"        ON (play.cinema_id = cinema.id) \r\n" + 
+				"    INNER JOIN movie_hall\r\n" + 
+				"	ON (cinema.id = movie_hall.cinema_id)\r\n" + 
+				"    WHERE movie.id="+ movieId +" AND cinema.id=" + cinemaId;
+		
+		Connection conn = DbUtils.getConn();
+		Statement stm = null;
+		ResultSet rs = null;
+			try {
+				stm = conn.createStatement();
+				 rs = stm.executeQuery(sql);
+				 while (rs.next()) {
+					 PlayAndHall playAndHall = new PlayAndHall();
+					playAndHall.setId(rs.getInt("id"));
+					playAndHall.setName(rs.getString("name"));
+					playAndHall.setPlayTime(rs.getString("play_time"));
+					playAndHall.setPrice(rs.getInt("price"));
+					playAndHalls.add(playAndHall);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return playAndHalls;
+	}
+	
 }

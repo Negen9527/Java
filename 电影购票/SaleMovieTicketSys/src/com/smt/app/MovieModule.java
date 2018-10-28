@@ -196,6 +196,15 @@ public class MovieModule {
 	
 	
 	
+	//查询电影
+	public static void searchMovie() {
+		System.out.println("-------------------电影查询-----------------------");
+		System.out.print("输入电影名称：");
+		String movieName = scanner.next();
+		
+	}
+	
+	
 	//测试
 //	public static void main(String[] args) {
 //		MovieModule.listMovie();
