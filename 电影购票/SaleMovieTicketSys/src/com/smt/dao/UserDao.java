@@ -19,7 +19,7 @@ public class UserDao {
 		String sql = "insert into user(name,password,sex,tel)"
 				+ " values(?,?,?,?)";
 		Connection conn = DbUtils.getConn();
-		PreparedStatement pstm;
+		PreparedStatement pstm = null;
 		Boolean blnResult = false;
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -33,6 +33,7 @@ public class UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		DbUtils.close(conn,pstm);
 		return blnResult; 
 	}
 	
@@ -60,6 +61,7 @@ public class UserDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DbUtils.close(conn,stm);
 		return user;	
 	}
 	
@@ -68,7 +70,7 @@ public class UserDao {
 	public Boolean updateBalance(Double balance,Integer userId) {
 		String sql = "update user set balance=? where id=?";
 		Connection conn = DbUtils.getConn();
-		PreparedStatement pstm;
+		PreparedStatement pstm = null;
 		Boolean blnResult = false;
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -80,6 +82,7 @@ public class UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		DbUtils.close(conn,pstm);
 		return blnResult; 
 	}
 	
@@ -88,7 +91,7 @@ public class UserDao {
 	public Boolean updateUserInfo(String name,String tel,Integer sex,Integer userId) {
 		String sql = "update user set name=?,tel=?,sex=? where id=?";
 		Connection conn = DbUtils.getConn();
-		PreparedStatement pstm;
+		PreparedStatement pstm = null;
 		Boolean blnResult = false;
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -102,6 +105,7 @@ public class UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		DbUtils.close(conn,pstm);
 		return blnResult; 
 	}	
 	

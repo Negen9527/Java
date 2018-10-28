@@ -20,7 +20,7 @@ public class CinemaDao {
 		String sql = "insert into cinema(name,addr,city)"
 				+ " values(?,?,?)";
 		Connection conn = DbUtils.getConn();
-		PreparedStatement pstm;
+		PreparedStatement pstm = null;
 		Boolean blnResult = false;
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -33,6 +33,7 @@ public class CinemaDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		DbUtils.close(conn,pstm);
 		return blnResult; 
 	}
 	
@@ -58,6 +59,7 @@ public class CinemaDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DbUtils.close(conn,stm);
 		return cinemas;
 	}
 	
@@ -97,6 +99,7 @@ public class CinemaDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			DbUtils.close(conn,stm);
 			return cinemas;
 		
 	}

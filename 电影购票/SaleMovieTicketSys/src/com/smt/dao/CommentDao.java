@@ -17,7 +17,7 @@ public class CommentDao {
 		String sql = "insert into comment(content,movie_id,timestamp,user_id)"
 				+ " values(?,?,?,?)";
 		Connection conn = DbUtils.getConn();
-		PreparedStatement pstm;
+		PreparedStatement pstm = null;
 		Boolean blnResult = false;
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -32,6 +32,7 @@ public class CommentDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		DbUtils.close(conn,pstm);
 		return blnResult; 
 	}
 	
@@ -58,6 +59,7 @@ public class CommentDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			DbUtils.close(conn,stm);
 			return rs;
 	}
 	

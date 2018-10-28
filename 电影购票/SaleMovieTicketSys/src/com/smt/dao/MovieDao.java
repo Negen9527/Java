@@ -71,6 +71,7 @@ public class MovieDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DbUtils.close(conn,stm);
 		return movies;
 	}
 	
@@ -101,6 +102,7 @@ public class MovieDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DbUtils.close(conn,stm);
 		return movie;
 	}
 	

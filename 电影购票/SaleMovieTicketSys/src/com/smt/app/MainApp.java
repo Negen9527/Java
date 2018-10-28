@@ -3,6 +3,7 @@ package com.smt.app;
 import java.util.Scanner;
 
 public class MainApp {
+	private static Scanner scanner = new Scanner(System.in);
 	public static void main(String[] args) {
 		MainApp.showMenu();
 	}
@@ -20,7 +21,7 @@ public class MainApp {
 						+ "4.退出";
 		System.out.println(menuStr);
 		System.out.print("请选择:");
-		Scanner scanner = new Scanner(System.in);
+//		Scanner scanner = new Scanner(System.in);
 		int choice = scanner.nextInt();
 		
 		switch (choice) {
@@ -59,6 +60,15 @@ public class MainApp {
 		System.out.print("请选择:");
 		Scanner scanner = new Scanner(System.in);
 		int choice = scanner.nextInt();
+		while(true) {
+			if(choice < 1 || choice > 6) {
+				System.out.println("请输入1-6之间的整数");
+				System.out.println("请输入:");
+				choice = scanner.nextInt();
+			}else {
+				break;
+			}
+		}
 		switch (choice) {
 		case 1:
 			//电影管理
@@ -92,8 +102,7 @@ public class MainApp {
 	}
 	
 	
-	
-	
+
 	
 	
 	

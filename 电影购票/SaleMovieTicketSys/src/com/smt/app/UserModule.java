@@ -25,7 +25,7 @@ public class UserModule {
 		String password = scanner.next();
 		System.out.println("请再次输入密码:");
 		String passwordagain = scanner.next();
-		if(!password.equals(passwordagain)) {
+		if(!password.trim().equals(passwordagain.trim())) {
 			System.out.println("两次密码不一致，请重新输入");
 			userRegister();
 		}
@@ -81,7 +81,8 @@ public class UserModule {
 		String password = scanner.next().trim();
 		User user = userDao.selectUserByNameAndPassword(name, password);
 		if(null == user) {
-			System.out.println("登录失败");
+			System.out.println("登录失败,重新登录");
+			userLogin();
 		}else {
 			System.out.println("登录成功");
 			userId = user.getId();
@@ -103,6 +104,16 @@ public class UserModule {
 		System.out.println("6.退出");
 		System.out.print("请选择:");
 		Integer intChoice = scanner.nextInt();
+		while(true) {
+			
+			if(intChoice < 1 || intChoice > 6) {
+				System.out.println("请输入1-6之间的整数");
+				System.out.println("请输入:");
+				intChoice = scanner.nextInt();
+			}else {
+				break;
+			}
+		}
 		switch (intChoice) {
 		case 1:
 			//购票

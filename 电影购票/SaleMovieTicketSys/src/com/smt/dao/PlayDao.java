@@ -20,7 +20,7 @@ public class PlayDao {
 		String sql = "insert into play(movie_id,play_time,price,hall_id,cinema_id)"
 				+ " values(?,?,?,?,?)";
 		Connection conn = DbUtils.getConn();
-		PreparedStatement pstm;
+		PreparedStatement pstm = null;
 		Boolean blnResult = false;
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -35,6 +35,7 @@ public class PlayDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		DbUtils.close(conn,pstm);
 		return blnResult; 
 	}
 	
@@ -63,6 +64,7 @@ public class PlayDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DbUtils.close(conn,stm);
 		return plays;	
 	}
 	
@@ -87,6 +89,7 @@ public class PlayDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			DbUtils.close(conn,stm);
 			return rs;
 	}
 	
@@ -125,6 +128,7 @@ public class PlayDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			DbUtils.close(conn,stm);
 			return playAndHalls;
 	}
 	

@@ -69,7 +69,7 @@ public class MovieTicketModule {
 	
 	
 	
-	//π∫∆±
+	//π∫∆±£®∑÷“≥£©
 	private static void purchaseTicket(Map<Integer, List<Movie>> pageTeam) {
 		Integer totalPage = pageTeam.size();
 		System.out.println("-------------------µÁ”∞-----------------------");

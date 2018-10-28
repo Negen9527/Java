@@ -18,7 +18,7 @@ public class MovieHallDao {
 		String sql = "insert into movie_hall(name,cinema_id)"
 				+ " values(?,?)";
 		Connection conn = DbUtils.getConn();
-		PreparedStatement pstm;
+		PreparedStatement pstm = null;
 		Boolean blnResult = false;
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -30,6 +30,7 @@ public class MovieHallDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		DbUtils.close(conn,pstm);
 		return blnResult; 
 	}
 	
@@ -55,6 +56,7 @@ public class MovieHallDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DbUtils.close(conn,stm);
 		return movieHalls;	
 }
 	

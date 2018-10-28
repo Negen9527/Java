@@ -56,6 +56,7 @@ public class OrderDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DbUtils.close(conn,stm);
 		return orders;
 	}
 	
