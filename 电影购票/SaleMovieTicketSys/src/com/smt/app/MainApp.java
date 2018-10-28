@@ -78,6 +78,7 @@ public class MainApp {
 			break;
 		case 5:
 			//订单管理【影票】
+			OrderModule.showAllOrders();
 			break;
 			
 		case 6:

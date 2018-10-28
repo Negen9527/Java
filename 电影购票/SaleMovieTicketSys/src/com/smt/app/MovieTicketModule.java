@@ -22,7 +22,7 @@ import com.smt.entity.UserTicket;
 //电影票模块 
 public class MovieTicketModule {
 	private static Scanner scanner = new Scanner(System.in);
-	private  static MovieTicketDao movieTicketDao = new MovieTicketDao();
+	private static MovieTicketDao movieTicketDao = new MovieTicketDao();
 	private static MovieDao movieDao = new MovieDao();
 	private static CinemaDao cinemaDao = new CinemaDao();
 	private static MovieHallDao movieHallDao = new MovieHallDao();
@@ -43,7 +43,8 @@ public class MovieTicketModule {
 	private static Integer seat = 0;
 	private static Integer price = 0;
 	
-	
+	public static List<Movie> movieList = new ArrayList<>();
+	public static Integer index;
 	
 	//电影列表
 	public static void listMovie() {
@@ -87,6 +88,8 @@ public class MovieTicketModule {
 		System.out.print("请选择:");
 		int choice = scanner.nextInt();
 		if(choice > 0 && choice < 6) {
+			movieList = pageTeam.get(currentPage);
+			index = choice;
 			showMovieInfo(pageTeam.get(currentPage), choice);
 		}
 		
@@ -124,7 +127,7 @@ public class MovieTicketModule {
 	
 	
 	//显示电影详细信息
-	private static void showMovieInfo(List<Movie> movieList,Integer index) {
+	public static void showMovieInfo(List<Movie> movieList,Integer index) {
 		System.out.println("----------------------电影详情----------------------");
 		Movie movie = movieList.get(index-1); 
 		System.out.println(movie.getName());
@@ -146,7 +149,11 @@ public class MovieTicketModule {
 			choiceCinemaByMovieId(movieId);
 			break;
 		case 2:
-			
+			//查看评论
+			movieId = movie.getId();
+			movieName = movie.getName();
+			System.out.println(movieName);
+			CommentModule.listAllComment(movieId);
 			break;
 		case 0:
 			
@@ -282,7 +289,7 @@ public class MovieTicketModule {
 			break;
 		case 2:
 			//充值
-			
+			recharge();
 			break;
 		case 0:
 			//返回
@@ -376,11 +383,11 @@ public class MovieTicketModule {
 		List<UserTicket> userTickets = movieTicketDao.selectTicketByUserId(UserModule.userId);
 		Integer i = 1;
 		for (UserTicket userTicket : userTickets) {
-			System.out.println(i + "电影：" + userTicket.getMovieName());
-			System.out.println("影院：" + userTicket.getCinemaName());
-			System.out.println("影厅：" + userTicket.getHallName());
-			System.out.println("座位：" + userTicket.getSeat());
-			System.out.println("价格："+ userTicket.getPrice());
+			System.out.println(i + ".电影：" + userTicket.getMovieName());
+			System.out.println("  影院：" + userTicket.getCinemaName());
+			System.out.println("  影厅：" + userTicket.getHallName());
+			System.out.println("  座位：" + userTicket.getSeat());
+			System.out.println("  价格："+ userTicket.getPrice());
 			i++;
 		}
 		System.out.println("请选择电影票添加评论：");
@@ -388,7 +395,9 @@ public class MovieTicketModule {
 		Integer intChoice = scanner.nextInt();
 		if(0 != intChoice) {
 			//添加评论
-			System.out.println("请输入评论：");
+//			System.out.println("请输入评论：");
+
+			CommentModule.addComment(userTickets.get(intChoice-1).getMovieId(), UserModule.userId);
 			
 		}else {
 			UserModule.showOnlineMainMenu();

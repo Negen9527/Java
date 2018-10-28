@@ -122,7 +122,7 @@ public class UserModule {
 			break;
 		case 5:
 			//个人信息
-			
+			userInfo();
 			break;
 		case 6:
 			//退出
@@ -145,7 +145,8 @@ public class UserModule {
 		System.out.print("输入电影名称");
 		System.out.println("\n\n0.返回");
 		String movieName = scanner.next();
-		if("0" != movieName) {
+		System.out.println(!"0".equals(movieName));
+		if(!"0".equals(movieName)) {
 			Movie movie = movieDao.searchMovieByName(movieName);
 //			System.out.println(movie);
 			if(null == movie.getId()) {
@@ -168,5 +169,47 @@ public class UserModule {
 		}
 		
 	}
+	
+	//用户信息
+	public static void userInfo() {
+		System.out.println("-------------------个人信息-----------------------");
+		System.out.println("账号：" + currentUser.getName());
+		System.out.println("电话：" + currentUser.getTel());
+		System.out.println("性别：" + (currentUser.getSex()==1?"男":"女"));
+		System.out.println("余额：" + currentBalance);
+		
+		System.out.println("\n1.修改");
+		System.out.println("0.返回");	
+		Integer choice = scanner.nextInt();
+		if (1 == choice) {
+			modifyUserInfo();
+		}else {
+			showOnlineMainMenu();
+		}
+		
+	}
+	
+	//修改用户信息
+	public static void modifyUserInfo() {
+		System.out.println("请输入");
+		System.out.println("账号：");
+		String name = scanner.next();
+		System.out.println("电话：");
+		String tel = scanner.next();
+		System.out.println("性别：");
+		Integer sex = scanner.next()=="男"?1:0;
+		Boolean blnResult = userDao.updateUserInfo(name, tel, sex, userId);
+		if (blnResult) {
+			System.out.println("修改成功");
+			currentUser.setName(name);
+			currentUser.setTel(tel);
+			currentUser.setSex(sex);
+		}
+		
+//		System.out.println("0.返回");
+		showOnlineMainMenu();
+	}
+	
+	
 	
 }

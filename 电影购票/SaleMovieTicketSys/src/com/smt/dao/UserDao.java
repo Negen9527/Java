@@ -84,5 +84,25 @@ public class UserDao {
 	}
 	
 	
+	//ÐÞ¸ÄÐÅÏ¢
+	public Boolean updateUserInfo(String name,String tel,Integer sex,Integer userId) {
+		String sql = "update user set name=?,tel=?,sex=? where id=?";
+		Connection conn = DbUtils.getConn();
+		PreparedStatement pstm;
+		Boolean blnResult = false;
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1,name);
+			pstm.setString(2, tel);
+			pstm.setInt(3, sex);
+			pstm.setInt(4, userId);
+			Integer intResult = pstm.executeUpdate();
+			if(1 == intResult)
+				blnResult = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return blnResult; 
+	}	
 	
 }

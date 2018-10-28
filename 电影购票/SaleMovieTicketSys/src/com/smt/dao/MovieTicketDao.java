@@ -91,7 +91,7 @@ public class MovieTicketDao {
 					 ticket.setMovieId(rs.getInt("movieId"));
 					 ticket.setMovieName(rs.getString("movieName"));
 					 ticket.setCinemaName(rs.getString("cinemaName"));
-					 ticket.setHallName("hallName");
+					 ticket.setHallName(rs.getString("hallName"));
 					 ticket.setSeat(rs.getInt("seat"));
 					 ticket.setPlayTime(rs.getString("playTime"));
 					 ticket.setPrice(rs.getDouble("price"));
@@ -102,10 +102,6 @@ public class MovieTicketDao {
 				e.printStackTrace();
 			}
 			return userTickets;
-		
-		
 	}
-	
-	
-	
+
 }
