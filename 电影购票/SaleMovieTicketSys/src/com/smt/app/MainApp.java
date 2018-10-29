@@ -2,6 +2,8 @@ package com.smt.app;
 
 import java.util.Scanner;
 
+import com.smt.utils.InputUtils;
+
 public class MainApp {
 	private static Scanner scanner = new Scanner(System.in);
 	public static void main(String[] args) {
@@ -22,7 +24,17 @@ public class MainApp {
 		System.out.println(menuStr);
 		System.out.print("请选择:");
 //		Scanner scanner = new Scanner(System.in);
-		int choice = scanner.nextInt();
+//		int choice = scanner.nextInt();
+//		while(true) {
+//			if (choice < 1 || choice > 4) {
+//				System.out.println("请输入1-4之间的整数");
+//				choice = scanner.nextInt();
+//			}else {
+//				break;
+//			}
+//		}
+//		
+		Integer choice = InputUtils.checkInputValue(1, 4);
 		
 		switch (choice) {
 		case 1:

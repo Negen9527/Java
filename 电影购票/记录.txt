@@ -1,7 +1,7 @@
-ÓÃ»§±í      user
-µçÓ°±í      movie
-Ó°Ôº±í      cinema
-Ó°Ìü±í      movie_hall
-³¡´Î±í      play
-Ó°Æ±±í      movie_ticket
-ÆÀÂÛ±í      comment
+ï»¿ç”¨æˆ·è¡¨      user
+ç”µå½±è¡¨      movie
+å½±é™¢è¡¨      cinema
+å½±åŽ…è¡¨      movie_hall
+åœºæ¬¡è¡¨      play
+å½±ç¥¨è¡¨      movie_ticket
+è¯„è®ºè¡¨      comment

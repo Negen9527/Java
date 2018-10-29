@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.smt.dao.CinemaDao;
 import com.smt.entity.Cinema;
+import com.smt.utils.InputUtils;
 
 public class CinemaModule {
 	
@@ -21,7 +22,8 @@ public class CinemaModule {
 		System.out.println(adminMenuStr);
 		System.out.print("请选择:");
 		Scanner scanner = new Scanner(System.in);
-		int choice = scanner.nextInt();
+//		int choice = scanner.nextInt();
+		Integer choice = InputUtils.checkInputValue(1, 3);
 		switch (choice) {
 		case 1:
 			//影院列表
@@ -60,7 +62,8 @@ public class CinemaModule {
 							 + "2.返回\n";
 		System.out.println(adminMenuStr);
 		System.out.print("请选择:");
-		Integer intChoice = scanner.nextInt();
+//		Integer intChoice = scanner.nextInt();
+		Integer intChoice = InputUtils.checkInputValue(1, 2);
 		switch (intChoice) {
 		case 1:
 			addCinema();
