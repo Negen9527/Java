@@ -59,7 +59,7 @@ public class CommentDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			DbUtils.close(conn,stm);
+//			DbUtils.close(conn,stm);
 			return rs;
 	}
 	
