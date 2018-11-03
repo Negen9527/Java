@@ -32,7 +32,7 @@ public class CommentDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		DbUtils.close(conn,pstm);
+//		DbUtils.close(conn,pstm);
 		return blnResult; 
 	}
 	
@@ -62,6 +62,4 @@ public class CommentDao {
 //			DbUtils.close(conn,stm);
 			return rs;
 	}
-	
-	
 }
