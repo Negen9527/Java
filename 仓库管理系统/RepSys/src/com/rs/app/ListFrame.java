@@ -5,11 +5,14 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.util.List;
 
+import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 import com.rs.entity.Product;
 import com.rs.utils.FileUtil;
@@ -53,13 +56,15 @@ public class ListFrame extends JFrame {
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
 		String[]names={"货品号","货品名","库存","进货日期","货品单价","生产厂家","供应商"};
-		DefaultTableModel model = new DefaultTableModel(names,15);
+		DefaultTableModel model = new DefaultTableModel(names,10);
 		table = new JTable();
 		
 		JTableHeader header = table.getTableHeader();
 		table.setRowHeight(35);
 		header.setFont(new Font("楷体", Font.PLAIN, 35));
 		table.setModel(model);
+		
+		
 		
 		//读取文件  获取数据
 		List<Product> products = FileUtil.readFile();
