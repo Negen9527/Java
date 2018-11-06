@@ -3,7 +3,7 @@ package com.rs.entity;
 
 import com.rs.utils.StringUtil;
 
-public class Product {
+public class Product implements Comparable<Product>{
 
 	private String name;                //货品名
 	private String productId;           //货品号
@@ -78,6 +78,13 @@ public class Product {
 	public String myToString() {
 		return name + "<_>" + productId + "<_>" + count + "<_>" + inTime
 				+ "<_>" + price + "<_>" + manufacturer + "<_>" + supplier;
+	}
+	@Override
+	public int compareTo(Product o) {
+		if(this.count*this.price > o.count*o.price)
+			return -1;
+		else
+			return 1;
 	}	
 	
 	

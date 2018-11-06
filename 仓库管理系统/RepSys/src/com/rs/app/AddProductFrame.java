@@ -21,6 +21,8 @@ import com.rs.utils.StringUtil;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
@@ -65,7 +67,7 @@ public class AddProductFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public AddProductFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 888, 832);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -178,6 +180,22 @@ public class AddProductFrame extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnReset, 193, SpringLayout.WEST, contentPane);
 		btnReset.setFont(new Font("宋体", Font.PLAIN, 24));
 		contentPane.add(btnReset);
+
+		/**
+		 * 	窗口监听事件
+		 */
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent e) {
+				MainApp.window.frame.setVisible(true);
+			}
+		});
+		
+		
+		
+		
+		
+		
 		
 		JButton btnSave = new JButton("\u4FDD  \u5B58");
 		btnSave.addActionListener(new ActionListener() {
@@ -194,6 +212,8 @@ public class AddProductFrame extends JFrame {
 					product.setManufacturer(manufacturer);
 					product.setSupplier(supplier);
 					FileUtil.writeFile(product.myToString() + "\n");
+					JOptionPane.showMessageDialog(null, "添加成功", "", JOptionPane.DEFAULT_OPTION);
+					getValues(0);
 				}
 			}
 		});
