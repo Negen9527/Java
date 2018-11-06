@@ -33,6 +33,29 @@ public class FileUtil {
 		}
 	}
 	
+	/**
+	 *  	覆盖（修改/删除）
+	 * @param line
+	 */
+	public static void writeCoverFile(String line) {
+		try {
+		
+		if(!file.exists()) {
+			file.createNewFile();
+		}
+		FileWriter fileWriter = new FileWriter(file.getName());
+		fileWriter.write(line);
+		fileWriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
 	
 	/**
 	 * 	读取文件

@@ -100,11 +100,20 @@ public class MainApp {
 		sl_panel.putConstraint(SpringLayout.NORTH, btnSearchProduct, 79, SpringLayout.SOUTH, btnListAll);
 		panel.add(btnSearchProduct);
 		
-		JButton btnNewButton_3 = new JButton("ÐÞ¸Ä/É¾³ý");
-		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton_3, 79, SpringLayout.SOUTH, btnAddProduct);
-		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton_3, 52, SpringLayout.EAST, btnSearchProduct);
-		btnNewButton_3.setFont(new Font("ËÎÌå", Font.PLAIN, 30));
-		panel.add(btnNewButton_3);
+		JButton btnModify = new JButton("ÐÞ¸Ä/É¾³ý");
+		btnModify.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ModifyFrame modifyFrame = new ModifyFrame();
+				modifyFrame.show();
+				window.frame.setVisible(false);
+			}
+		});
+		sl_panel.putConstraint(SpringLayout.NORTH, btnModify, 79, SpringLayout.SOUTH, btnAddProduct);
+		sl_panel.putConstraint(SpringLayout.WEST, btnModify, 52, SpringLayout.EAST, btnSearchProduct);
+		btnModify.setFont(new Font("ËÎÌå", Font.PLAIN, 30));
+		panel.add(btnModify);
 	}
 
 }
