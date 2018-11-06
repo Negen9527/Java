@@ -127,7 +127,7 @@ public class ListFrame extends JFrame {
             public void setValue(Object value) { //重写setValue方法，从而可以动态设置列单元字体颜色   
             	Integer a = (value instanceof Integer) ? ((Integer) value).intValue() : -1; //获取月薪列中的值   
                 if(a != 0) {
-                    setBackground((a  < 4 && a > -1) ? Color.red : Color.white); //库存小于等于5，就将背景色设置为红色   
+                    setBackground((a  < 6 && a > -1) ? Color.red : Color.white); //库存小于等于5，就将背景色设置为红色   
                     setText((value == null) ? "" : value.toString());   
                 }
 
