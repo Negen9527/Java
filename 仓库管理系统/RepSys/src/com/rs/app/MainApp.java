@@ -3,6 +3,7 @@ package com.rs.app;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.SpringLayout;
@@ -45,7 +46,7 @@ public class MainApp {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 610, 402);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		frame.setTitle("欢迎使用信达仓库管理系统");
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		SpringLayout sl_panel = new SpringLayout();
@@ -114,6 +115,12 @@ public class MainApp {
 		sl_panel.putConstraint(SpringLayout.WEST, btnModify, 52, SpringLayout.EAST, btnSearchProduct);
 		btnModify.setFont(new Font("宋体", Font.PLAIN, 30));
 		panel.add(btnModify);
+		
+		JLabel labelTitle = new JLabel("\u4FE1\u8FBE\u4ED3\u5E93\u7BA1\u7406\u7CFB\u7EDF");
+		sl_panel.putConstraint(SpringLayout.NORTH, labelTitle, 32, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, labelTitle, -122, SpringLayout.EAST, panel);
+		labelTitle.setFont(new Font("宋体", Font.PLAIN, 40));
+		panel.add(labelTitle);
 	}
 
 }
