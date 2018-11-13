@@ -76,8 +76,9 @@ public class SearchFrame extends JFrame {
 		
 		JPanel panel_2 = new JPanel();
 		sl_panel.putConstraint(SpringLayout.NORTH, panel_2, 30, SpringLayout.SOUTH, panel_1);
-		sl_panel.putConstraint(SpringLayout.WEST, panel_2, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, panel_2, 170, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, 380, SpringLayout.SOUTH, panel_1);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_2, 700, SpringLayout.WEST, panel);
 		SpringLayout sl_panel_1 = new SpringLayout();
 		panel_1.setLayout(sl_panel_1);
 		
@@ -106,7 +107,6 @@ public class SearchFrame extends JFrame {
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, btnNewButton, -36, SpringLayout.SOUTH, panel_1);
 		btnNewButton.setFont(new Font("ËÎÌו", Font.PLAIN, 30));
 		panel_1.add(btnNewButton);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_2, 785, SpringLayout.WEST, panel);
 		panel.add(panel_2);
 		SpringLayout sl_panel_2 = new SpringLayout();
 		panel_2.setLayout(sl_panel_2);
