@@ -7,9 +7,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.SpringLayout;
+
+import com.rs.utils.GUITools;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class MainApp {
@@ -45,12 +50,18 @@ public class MainApp {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 610, 402);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setTitle("欢迎使用信达仓库管理系统");
+		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
+		
+		
+
+		
+		
 		
 		JButton btnListAll = new JButton("\u67E5\u770B\u8D27\u54C1\u4FE1\u606F");
 		btnListAll.addActionListener(new ActionListener() {

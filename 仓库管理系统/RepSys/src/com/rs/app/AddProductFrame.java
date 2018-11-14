@@ -16,6 +16,7 @@ import java.awt.Font;
 import com.rs.entity.Product;
 import com.rs.utils.DateUtil;
 import com.rs.utils.FileUtil;
+import com.rs.utils.GUITools;
 import com.rs.utils.StringUtil;
 
 import java.awt.Color;
@@ -69,6 +70,7 @@ public class AddProductFrame extends JFrame {
 	public AddProductFrame() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 888, 832);
+		GUITools.center(this);//设置窗口在屏幕上的位置
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

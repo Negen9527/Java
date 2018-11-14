@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.rs.entity.Product;
 import com.rs.utils.FileUtil;
+import com.rs.utils.GUITools;
 import com.rs.utils.StringUtil;
 
 import javax.swing.SpringLayout;
@@ -57,6 +58,7 @@ public class SearchFrame extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 832, 620);
+		GUITools.center(this);//设置窗口在屏幕上的位置
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

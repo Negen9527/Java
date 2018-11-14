@@ -22,6 +22,7 @@ import javax.swing.table.TableColumnModel;
 
 import com.rs.entity.Product;
 import com.rs.utils.FileUtil;
+import com.rs.utils.GUITools;
 
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -68,6 +69,7 @@ public class ListFrame extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1092, 741);
+		GUITools.center(this);//设置窗口在屏幕上的位置
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
