@@ -9,6 +9,7 @@ package com.game.bean;
  */
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -46,8 +47,13 @@ public class JFrameTest extends Frame implements MouseMotionListener{
     int _x = 250;     //炮台x
     int _y = 435;     //炮台y
     
+    int bulletCount = 50;      //子弹数量
+    int shotCount = 0;         //击中数量
+     
     int bulletX = _x - 5;      //子弹x
     int bulletY = _y - 5;      //子弹y
+    
+    double k;  //斜率
 
     
     //主函数
@@ -98,6 +104,10 @@ public class JFrameTest extends Frame implements MouseMotionListener{
                 System.out.println("鼠标出去了");
                 _x = 250;     //炮台x
                 _y = 435;     //炮台y
+                if(State == RUNNING){
+                    bulletX = _x - 5;
+                    bulletY = _y - 5;
+                }
                 State = STOP;
             }
             
@@ -108,9 +118,12 @@ public class JFrameTest extends Frame implements MouseMotionListener{
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(e.getButton() == MouseEvent.BUTTON1){
+                    bulletCount--;
                     int mouseX =  e.getX();
-                    int mouseY = e.getY();     
-                    System.out.println(mouseX + " , " + mouseY);
+                    int mouseY = e.getY(); 
+                    k = (double)(mouseY - _y)/(double)(mouseX - _x);
+                    
+                    System.out.println(k + " , " + mouseX + " , " + mouseY);
                     State = BANG;
                }
 
@@ -126,10 +139,14 @@ public class JFrameTest extends Frame implements MouseMotionListener{
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("宋体", 20, 20));
+        g.drawString(String.format("子弹：%d", bulletCount), 20, 60);
+                g.drawString(String.format("击中：%d", shotCount), 400, 60);
         g.setColor(Color.blue);
         g.fillOval(x, 50 + y, 50, 50);
         g.drawRect(210, 475, 80, 50);
-        g.drawString("炮台", 240,490);
+        g.drawString("炮台", 230,493);
         g.drawLine(250, 475, _x, _y);
 
         g.setColor(Color.RED);
@@ -143,14 +160,11 @@ public class JFrameTest extends Frame implements MouseMotionListener{
         while(true){
             switch(State){
                 case BANG:
+                    
                     bang();
                     break;
                 case RUNNING:
                      x --;
-                     if(bulletX != _x -5 || bulletY != _y -5){
-                         bulletX--;
-                         bulletY--;
-                     }
                      break;
                 case STOP:
                     break;
@@ -159,7 +173,7 @@ public class JFrameTest extends Frame implements MouseMotionListener{
          
             if(x <= -50){
                 x = 450;
-                y = rand.nextInt(400);
+                y = rand.nextInt(350) + 60;
             }
             try {
                 Thread.sleep(10);
@@ -185,7 +199,12 @@ public class JFrameTest extends Frame implements MouseMotionListener{
         
                 int mouseX =  e.getX();
                 int mouseY = e.getY();  
-                System.out.println("x:" + mouseX + " , " + "y:" + mouseY);
+                if(State == RUNNING){
+                    bulletX = _x - 5;
+                    bulletY = _y - 5;
+                }
+                
+                
                 double percent = Math.sqrt(Math.pow(mouseX - 250, 2) + Math.pow(mouseY - 475, 2))/40;
                 
                 if(mouseX > 250){
@@ -225,10 +244,9 @@ public class JFrameTest extends Frame implements MouseMotionListener{
     
     //击中小鸟
     private void bang(){
-        bulletX--;
-        bulletY--;
         
-        
+        bulletX -= k;
+        bulletY -= k;
         x--;
         double nowTime = time + 0.001; 
         double h = 0.5 * 9.8 * (nowTime * nowTime - time * time);
